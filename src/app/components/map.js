@@ -57,25 +57,54 @@ export default function MapComponent() {
 
   useEffect(() => {
     const fetchResources = async () => {
-      const res = await fetch("/api/resources");
-      const data = await res.json();
-      setResources(data);
+      try {
+        const res = await fetch("/api/resources");
+        const data = await res.json();
+        setResources(data);
+      } catch (error) {
+        console.error("Error fetching resources:", error);
+      }
     };
     fetchResources();
 
-    // Get user location and store temporarily
+    // Check if Geolocation is available
+    if (!navigator.geolocation) {
+      console.error("Geolocation is not supported by this browser.");
+      setCurrentLocation(DEFAULT_CENTER); // Fallback to default location
+      return;
+    }
+
+    // Check location permission status
+    navigator.permissions
+      ?.query({ name: "geolocation" })
+      .then((result) => {
+        if (result.state === "denied") {
+          console.error("Location access denied. Please enable location permissions.");
+          setCurrentLocation(DEFAULT_CENTER); // Fallback to default location
+        }
+      })
+      .catch((error) => console.error("Error checking geolocation permissions:", error));
+
+    // Get user location
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setCurrentLocation([position.coords.latitude, position.coords.longitude]);
       },
-      (error) => console.error("Error getting location:", error),
-      { enableHighAccuracy: true }
+      (error) => {
+        console.error(
+          "Error getting location:",
+          error.message || `Code: ${error.code}`
+        );
+        alert("Failed to retrieve location. Ensure location services are enabled.");
+        setCurrentLocation(DEFAULT_CENTER); // Fallback to default location
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   }, []);
 
   return (
     <div className="h-screen w-full">
-      <MapContainer center={DEFAULT_CENTER} zoom={13} className="h-full w-full">
+      <MapContainer center={currentLocation || DEFAULT_CENTER} zoom={13} className="h-full w-full">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         {/* User Location Marker */}

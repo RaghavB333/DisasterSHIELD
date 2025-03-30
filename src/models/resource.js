@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const resourceSchema = new mongoose.Schema({
   name: String,
@@ -12,4 +12,4 @@ const resourceSchema = new mongoose.Schema({
 // Prevent recompiling the model
 const Resource = mongoose.models.Resource || mongoose.model("Resource", resourceSchema);
 
-export default Resource;
+module.exports = Resource;

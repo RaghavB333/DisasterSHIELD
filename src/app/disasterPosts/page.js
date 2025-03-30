@@ -208,16 +208,11 @@
 import { useEffect, useState } from "react";
 import PaymentModal from "@/app/components/PaymentModal";
 
-
 export default function DisasterPosts() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [showPaymentModal, setShowPaymentModal] = useState(false);
     const [selectedPost, setSelectedPost] = useState(null);
-
-    useEffect(() => {
-        console.log("Modal state changed:", showPaymentModal);
-    }, [showPaymentModal]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -235,7 +230,6 @@ export default function DisasterPosts() {
     }, []);
 
     const openPaymentModal = (post) => {
-        console.log("Opening modal for:", post);
         setSelectedPost(post);
         setShowPaymentModal(true);
     };
@@ -275,4 +269,3 @@ export default function DisasterPosts() {
         </div>
     );
 }
-

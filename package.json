@@ -1,35 +1,31 @@
 {
-<<<<<<< HEAD
   "name": "disaster-management",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-=======
-  "name": "web-app",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
->>>>>>> 482ebb26416d7362c1d719b94a996865af6fc0e6
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@google-cloud/dialogflow": "^7.0.1",
     "@huggingface/inference": "^3.6.2",
     "@shadcn/ui": "^0.0.4",
+    "axios": "^1.8.4",
     "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.6.2",
     "google-auth-library": "^10.0.0-rc.1",
+    "leaflet": "^1.9.4",
+    "leaflet-routing-machine": "^3.2.12",
     "lucide-react": "^0.485.0",
-    "next": "15.2.4",
+    "mongoose": "^8.13.1",
+    "next": "^15.2.4",
     "razorpay": "^2.9.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-leaflet": "^5.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -39,23 +35,6 @@
     "eslint-config-next": "15.2.4",
     "ethers": "^6.13.5",
     "hardhat": "^2.22.19",
-=======
-    "axios": "^1.8.4",
-    "dotenv": "^16.4.7",
-    "leaflet": "^1.9.4",
-    "leaflet-routing-machine": "^3.2.12",
-    "mongoose": "^8.13.1",
-    "next": "15.2.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-leaflet": "^5.0.0"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "eslint": "^9",
-    "eslint-config-next": "15.2.4",
->>>>>>> 482ebb26416d7362c1d719b94a996865af6fc0e6
     "tailwindcss": "^4"
   }
 }

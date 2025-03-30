@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Load the trained XGBoost model
-model = joblib.load("C:\\Hackathon-project\\web-app\\python-files\\xgb_model.joblib")
+model = joblib.load("D:\\disaster-management\\python-files\\xgb_model.joblib")
 
 @app.route("/predict", methods=["POST"])
 def predict():
