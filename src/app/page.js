@@ -49,6 +49,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { donate, getDonations } from "./utils/blockchain";
 import { motion } from 'framer-motion';
+import Link from "next/link";
 import { MapPin, AlertCircle, MessageSquare, Heart, ArrowRight, Shield } from 'lucide-react';
 
 export default function Home() {
@@ -74,14 +75,14 @@ export default function Home() {
             <span className="font-bold text-xl text-red-600">DisasterShield</span>
           </div>
           <div className="hidden md:flex space-x-8">
-            <NavLink href="#alerts">Alerts</NavLink>
+            <NavLink href="/prediction">Alerts</NavLink>
             <NavLink href="/mapping">Emergency Map</NavLink>
             <NavLink href="/disasterPosts">Donate</NavLink>
-            <NavLink href="/chatbot">Get Help</NavLink>
+            {/* <NavLink href="/chatbot">Get Help</NavLink> */}
           </div>
-          <button className="bg-red-600 text-white px-4 py-2 rounded-full font-medium hover:bg-red-700 transition-colors">
-            Emergency Call
-          </button>
+          <Link href="/chatbot" className="bg-red-600 text-white px-4 py-2 rounded-full font-medium hover:bg-red-700 transition-colors">
+            Get Help
+          </Link>
         </div>
       </nav>
 
@@ -104,22 +105,6 @@ export default function Home() {
             <p className="text-xl md:text-2xl mb-10 text-gray-800">
               AI-powered disaster alerts, emergency coordination, and transparent relief funding.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-red-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-red-700 transition-colors shadow-lg"
-              >
-                Get Emergency Help
-              </motion.button>
-              <motion.button 
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white text-red-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg"
-              >
-                Make a Donation
-              </motion.button>
-            </div>
           </motion.div>
         </div>
         <div className="absolute bottom-10 left-0 right-0 flex justify-center">
@@ -170,7 +155,7 @@ export default function Home() {
             <FeatureCard 
               icon={Heart} 
               link="/disasterPosts" 
-              title="Blockchain Donations" 
+              title="Donations" 
               description="Fully transparent fund allocation with real-time tracking of every contribution." 
               color="bg-green-500"
             />
@@ -181,24 +166,6 @@ export default function Home() {
               description="Get immediate answers, emergency protocols and personalized guidance." 
               color="bg-purple-500"
             />
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Section */}
-      <div className="bg-red-600 py-20 text-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-4xl font-bold mb-6">Ready to Make a Difference?</h2>
-          <p className="text-xl mb-10 max-w-2xl mx-auto">
-            Join our network of volunteers or contribute to ongoing relief efforts. Every action matters.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-red-600 px-8 py-4 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
-              Become a Volunteer
-            </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-red-600 transition-colors">
-              Donate Now
-            </button>
           </div>
         </div>
       </div>
