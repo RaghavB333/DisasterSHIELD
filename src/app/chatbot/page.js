@@ -1,76 +1,3 @@
-
-// // "use client";
-// // import { useState } from "react";
-
-// // export default function Chatbot() {
-// //   const [messages, setMessages] = useState([]);
-// //   const [input, setInput] = useState("");
-// //   const [loading, setLoading] = useState(false);
-
-// //   // Send message to the API
-// //   const sendMessage = async () => {
-// //     if (!input.trim()) return;
-
-// //     const userMessage = { role: "user", content: input };
-// //     setMessages([...messages, userMessage]);
-// //     setInput("");
-// //     setLoading(true);
-
-// //     try {
-// //       const res = await fetch("/api/chat", {
-// //         method: "POST",
-// //         headers: { "Content-Type": "application/json" },
-// //         body: JSON.stringify({ message: input }),
-// //       });
-
-// //       const data = await res.json();
-// //       const botMessage = { role: "bot", content: data.response };
-
-// //       setMessages((prev) => [...prev, botMessage]);
-// //     } catch (error) {
-// //       console.error("Error fetching response:", error);
-// //     } finally {
-// //       setLoading(false);
-// //     }
-// //   };
-
-// //   return (
-// //     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-// //       <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-4">
-// //         <h1 className="text-xl font-bold text-center mb-4">🤖 Chatbot</h1>
-        
-// //         {/* Chat Messages */}
-// //         <div className="h-80 overflow-y-auto border p-3 rounded-md bg-gray-50">
-// //           {messages.map((msg, index) => (
-// //             <div key={index} className={`p-2 my-1 rounded-md ${msg.role === "user" ? "bg-blue-200 text-right" : "bg-gray-200 text-left"}`}>
-// //               {msg.content}
-// //             </div>
-// //           ))}
-// //           {loading && <div className="text-gray-500 text-center">Bot is typing...</div>}
-// //         </div>
-
-// //         {/* Input Box */}
-// //         <div className="flex mt-4">
-// //           <input
-// //             type="text"
-// //             value={input}
-// //             onChange={(e) => setInput(e.target.value)}
-// //             className="flex-grow p-2 border rounded-l-md"
-// //             placeholder="Type a message..."
-// //           />
-// //           <button 
-// //             onClick={sendMessage}
-// //             className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600"
-// //             disabled={loading}
-// //           >
-// //             Send
-// //           </button>
-// //         </div>
-// //       </div>
-// //     </div>
-// //   );
-// }
-
 "use client";
 import { useState, useRef, useEffect } from "react";
 import { Send, Loader2 } from "lucide-react";
@@ -103,7 +30,7 @@ export default function Chatbot() {
       });
 
       const data = await res.json();
-      const botMessage = { role: "bot", content: data.response };
+      const botMessage = { role: "bot", content: data.reply };
 
       setMessages((prev) => [...prev, botMessage]);
     } catch (error) {
@@ -134,7 +61,7 @@ export default function Chatbot() {
             <p className="text-xs text-blue-100">Always ready to help</p>
           </div>
         </div>
-        
+
         {/* Chat Messages */}
         <div className="h-96 overflow-y-auto p-4 bg-gray-50">
           {messages.length === 0 ? (
@@ -147,11 +74,16 @@ export default function Chatbot() {
             </div>
           ) : (
             messages.map((msg, index) => (
-              <div key={index} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"} mb-4`}>
-                <div 
-                  className={`max-w-xs md:max-w-md py-2 px-4 rounded-2xl ${
-                    msg.role === "user" 
-                      ? "bg-blue-600 text-white rounded-tr-none" 
+              <div
+                key={index}
+                className={`flex ${
+                  msg.role === "user" ? "justify-end" : "justify-start"
+                } mb-4`}
+              >
+                <div
+                  className={`max-w-xs md:max-w-md py-2 px-4 rounded-2xl whitespace-pre-wrap ${
+                    msg.role === "user"
+                      ? "bg-blue-600 text-white rounded-tr-none"
                       : "bg-gray-200 text-gray-800 rounded-tl-none"
                   }`}
                 >
@@ -182,12 +114,12 @@ export default function Chatbot() {
               className="flex-grow p-3 outline-none"
               placeholder="Type your message..."
             />
-            <button 
+            <button
               onClick={sendMessage}
               disabled={loading || !input.trim()}
               className={`px-4 flex items-center justify-center ${
-                loading || !input.trim() 
-                  ? "bg-gray-200 text-gray-400 cursor-not-allowed" 
+                loading || !input.trim()
+                  ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                   : "bg-blue-600 text-white hover:bg-blue-700"
               }`}
             >
