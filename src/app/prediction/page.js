@@ -160,7 +160,7 @@ export default function Home() {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://127.0.0.1:5000/predict", { features });
+      const response = await axios.post("https://disastershield.onrender.com/predict", { features });
       setPrediction(response.data.prediction * 100); // Convert to percentage
     } catch (err) {
       console.error("Prediction error:", err);
