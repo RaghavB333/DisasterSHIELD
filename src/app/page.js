@@ -49,42 +49,19 @@ import { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation";
 import { donate, getDonations } from "./utils/blockchain";
 import { motion } from 'framer-motion';
-import Link from "next/link";
-import { MapPin, AlertCircle, MessageSquare, Heart, ArrowRight, Shield } from 'lucide-react';
+
+import { MapPin, AlertCircle, MessageSquare, Heart, ArrowRight} from 'lucide-react';
 
 export default function Home() {
   const [amount, setAmount] = useState("");
   const [donations, setDonations] = useState([]);
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-red-50 to-white text-gray-900">
-      {/* Navbar */}
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-6'}`}>
-        <div className="container mx-auto flex justify-between items-center px-6">
-          <div className="flex items-center">
-            <Shield className="h-8 w-8 text-red-600 mr-2" />
-            <span className="font-bold text-xl text-red-600">DisasterShield</span>
-          </div>
-          <div className="hidden md:flex space-x-8">
-            <NavLink href="/prediction">Alerts</NavLink>
-            <NavLink href="/mapping">Emergency Map</NavLink>
-            <NavLink href="/disasterPosts">Donate</NavLink>
-            {/* <NavLink href="/chatbot">Get Help</NavLink> */}
-          </div>
-          <Link href="/chatbot" className="bg-red-600 text-white px-4 py-2 rounded-full font-medium hover:bg-red-700 transition-colors">
-            Get Help
-          </Link>
-        </div>
-      </nav>
+     
+      
 
       {/* Hero Section */}
       <div className="relative min-h-screen flex flex-col justify-center items-center text-center">

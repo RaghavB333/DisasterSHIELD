@@ -104,7 +104,7 @@ export default function MapComponent() {
 
   return (
     <div className="h-screen w-full">
-      <MapContainer center={currentLocation || DEFAULT_CENTER} zoom={13} className="h-full w-full">
+      <MapContainer center={currentLocation || DEFAULT_CENTER} zoom={13} className="h-full w-full z-0">
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
         {/* User Location Marker */}

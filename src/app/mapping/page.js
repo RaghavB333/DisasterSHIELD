@@ -6,5 +6,6 @@ const EmergencyMap = dynamic(() => import("@/app/components/map"), {
 });
 
 export default function MapPage() {
-  return <EmergencyMap />;
+  return (
+  <EmergencyMap />);
 }
