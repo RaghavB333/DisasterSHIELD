@@ -69,7 +69,7 @@ export default function Chatbot() {
               <div>
                 <div className="text-5xl mb-2">👋</div>
                 <p className="font-medium">Start a conversation!</p>
-                <p className="text-sm">I'm here to answer your questions</p>
+                <p className="text-sm">I&apos;m here to answer your questions</p>
               </div>
             </div>
           ) : (
